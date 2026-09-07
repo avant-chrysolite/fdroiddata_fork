@@ -220,10 +220,74 @@ Builds:
     prebuild: sed -i -e '/firebase-crashlytics:/,+2d' -e '/firebase/d' build.gradle
 
   - versionName: '32.38'
-    versionCode: 2428
+    versionCode: 242801
     commit: 26076c93237172af8e09656d2cfe06ab0d9eb872
     subdir: smarttubetv
     submodules: true
+    forcevercode: true
+    sudo:
+      - echo "deb https://deb.debian.org/debian bullseye main" > /etc/apt/sources.list.d/bullseye.list
+      - apt-get update
+      - apt-get install -y -t bullseye openjdk-11-jdk-headless
+      - update-java-alternatives --set java-1.11.0-openjdk-amd64
+    gradle:
+      - stfdroid
+    output: build/outputs/apk/stfdroid/release/SmartTube_fdroid_$$VERSION$$_arm64-v8a.apk
+    rm:
+      - SharedModules/j2v8/src/main/jniLibs
+      - MediaServiceCore/SharedModules/j2v8/src/main/jniLibs
+      - exoplayer-amzn-2.10.6/extensions/cast
+      - exoplayer-amzn-2.10.6/extensions/ima
+    prebuild: sed -i -e '/firebase-crashlytics:/,+2d' -e '/firebase/d' build.gradle
+
+  - versionName: '32.38'
+    versionCode: 242802
+    commit: 26076c93237172af8e09656d2cfe06ab0d9eb872
+    subdir: smarttubetv
+    submodules: true
+    forcevercode: true
+    sudo:
+      - echo "deb https://deb.debian.org/debian bullseye main" > /etc/apt/sources.list.d/bullseye.list
+      - apt-get update
+      - apt-get install -y -t bullseye openjdk-11-jdk-headless
+      - update-java-alternatives --set java-1.11.0-openjdk-amd64
+    gradle:
+      - stfdroid
+    output: build/outputs/apk/stfdroid/release/SmartTube_fdroid_$$VERSION$$_armeabi-v7a.apk
+    rm:
+      - SharedModules/j2v8/src/main/jniLibs
+      - MediaServiceCore/SharedModules/j2v8/src/main/jniLibs
+      - exoplayer-amzn-2.10.6/extensions/cast
+      - exoplayer-amzn-2.10.6/extensions/ima
+    prebuild: sed -i -e '/firebase-crashlytics:/,+2d' -e '/firebase/d' build.gradle
+
+  - versionName: '32.38'
+    versionCode: 242803
+    commit: 26076c93237172af8e09656d2cfe06ab0d9eb872
+    subdir: smarttubetv
+    submodules: true
+    forcevercode: true
+    sudo:
+      - echo "deb https://deb.debian.org/debian bullseye main" > /etc/apt/sources.list.d/bullseye.list
+      - apt-get update
+      - apt-get install -y -t bullseye openjdk-11-jdk-headless
+      - update-java-alternatives --set java-1.11.0-openjdk-amd64
+    gradle:
+      - stfdroid
+    output: build/outputs/apk/stfdroid/release/SmartTube_fdroid_$$VERSION$$_x86.apk
+    rm:
+      - SharedModules/j2v8/src/main/jniLibs
+      - MediaServiceCore/SharedModules/j2v8/src/main/jniLibs
+      - exoplayer-amzn-2.10.6/extensions/cast
+      - exoplayer-amzn-2.10.6/extensions/ima
+    prebuild: sed -i -e '/firebase-crashlytics:/,+2d' -e '/firebase/d' build.gradle
+
+  - versionName: '32.38'
+    versionCode: 242804
+    commit: 26076c93237172af8e09656d2cfe06ab0d9eb872
+    subdir: smarttubetv
+    submodules: true
+    forcevercode: true
     sudo:
       - echo "deb https://deb.debian.org/debian bullseye main" > /etc/apt/sources.list.d/bullseye.list
       - apt-get update
@@ -242,5 +306,10 @@ Builds:
 AutoUpdateMode: Version
 UpdateCheckMode: Tags ^[0-9.]+s$
 UpdateCheckData: smarttubetv/build.gradle|versionCode\s([\d_]+)||(.*)s
+VercodeOperation:
+  - 100 * %c + 1
+  - 100 * %c + 2
+  - 100 * %c + 3
+  - 100 * %c + 4
 CurrentVersion: '32.38'
 CurrentVersionCode: 2428
